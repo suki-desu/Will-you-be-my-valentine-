@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon.png" type="image">
+    <title>Will you be my valentine?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Caveat", serif;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: #FFBBC1;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 75%;
+        }
+
+        .choices {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .pop {
+            position: absolute;
+            padding: 15px;
+            justify-content: center;
+            width: 80%;
+            border-radius: 10px;
+            display: none;
+            background-color: #FF6F77;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 5.5rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        input[type="button"] {
+            padding: 5px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 5rem;
+            width: 250px;
+        }
+
+        #yes {
+            background-color: #92e192;
+        }
+
+        #no {
+            background-color: #FF6F77;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="bear3.gif">
+        <h1>Will you be my valentine?</h1>
+        <div class="choices">
+            <input type="button" value="Yes" id="yes">
+            <input type="button" value="No" id="no">
+        </div>
+    </div>
+    </div>
+    <div class="pop">
+        <img src="bear.gif">
+        <h1>YEEEHEYYY!!! It’s all set! I love you! Can’t wait to spend time with you! MWAH MWAH 💖</h1>
+    </div>
+</body>
+<script>
+    let yes = document.getElementById('yes');
+    let no = document.getElementById('no');
+    let gif = document.querySelector('img');
+    yes.addEventListener('click', () => {
+        document.querySelector('.pop').style.display = 'flex';
+        document.querySelector('.container').style.filter = "blur(2px)";
+    });
+    no.addEventListener('click', () => {
+        const please = ['Please', 'Pwease', "I'll be sad", 'Pretty please'];
+        const gif_no = ['bear1.gif', 'bear2.gif'];
+        let current_gif = gif.src;
+        let currentText = no.value;
+        do {
+            new_gif = gif_no[Math.floor(Math.random() * gif_no.length)];
+            newText = please[Math.floor(Math.random() * please.length)];
+        } while (newText == currentText && new_gif != current_gif);
+        gif.src = new_gif;
+        no.value = newText;
+        no.style.position = 'absolute';
+        no.style.width = 'auto';
+        no.style.top = Math.random() * (window.innerHeight - no.offsetHeight) + 'px';
+        no.style.left = Math.random() * (window.innerWidth - no.offsetWidth) + 'px';
+    });
+</script>
+
+</html>
